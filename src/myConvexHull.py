@@ -22,7 +22,7 @@ def convex_hull(points):
     center_weight = [0, 0]
     center_weight_calculated = False
 
-    points.sort(axis=0)
+    points = points[np.argsort(points[:, 0])]
     leftmost_point = points[0]
     rightmost_point = points[-1]
     np.delete(points, 0)
