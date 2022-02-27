@@ -16,6 +16,14 @@ center_weight_calculated = False
 
 
 def convex_hull(points):
+    """
+    Returns a list of ndarray denoting the dataset points that correspond to
+    the convex hull vertices.
+
+    :param points: List of 2d dataset values
+    :return: List of ndarray dataset points that corresponds to the convex
+    hull vertices to be plotted
+    """
     global hull_points, hull_points_copy, hull_point_count, center_weight, center_weight_calculated
 
     hull_points = []
@@ -54,6 +62,15 @@ def convex_hull(points):
 
 
 def point_position_from_line(left_point, right_point, point_checked):
+    """
+    Returns the position of a point according to a line defined by two points.
+
+    :param left_point: The leftmost point of the two that defines the line
+    :param right_point: The rightmost point of the two that defines the line
+    :param point_checked: The point being checked
+    :return: The point's position, either left, right, or collinear with the
+    line
+    """
     triangle_matrix = [[left_point[0], left_point[1], 1],
                        [right_point[0], right_point[1], 1],
                        [point_checked[0], point_checked[1], 1]]
@@ -68,6 +85,18 @@ def point_position_from_line(left_point, right_point, point_checked):
 
 
 def find_hull(left_point, right_point, points, inverted=False):
+    """
+    Appends the furthest point in `points` from the line defined by `left_point`
+    and `right_point` to `hull_points`, then recursively calls this function for
+    the point subsets created.
+
+    :param left_point: The leftmost point of the two that defines the line
+    :param right_point: The rightmost point of the two that defines the line
+    :param points: List of ndarray dataset points being checked
+    :param inverted: `True` if checking the lower part of the hull for the
+    first time.
+    :return: `None` when `points` have been exhausted
+    """
     if inverted:
         left_point, right_point = right_point, left_point
 
@@ -109,6 +138,13 @@ def find_hull(left_point, right_point, points, inverted=False):
 
 
 def cyclic_order_hull_points(point):
+    """
+    Returns the angle of a given point relative to the x-axis and the hull's
+    center weight
+
+    :param point: The point whose angle is being calculated
+    :return: Angle of the given point relative to the x-axis in radian
+    """
     global center_weight_calculated
 
     if not center_weight_calculated:
