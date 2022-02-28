@@ -16,7 +16,7 @@ Eddy in 1997.
 3. You can now import and use the library as intended.  
    To view a demonstration of the library,
    1. run Jupyter Notebook using `jupyter notebook`
-   2. locate the source directory in your machine
+   2. locate and open the source directory in your machine
    3. open `convex_hull.ipynb` and click `Run All`
 
 ## Author
